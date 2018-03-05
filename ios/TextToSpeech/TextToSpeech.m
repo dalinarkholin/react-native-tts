@@ -11,6 +11,7 @@
 #import <React/RCTLog.h>
 
 #import "TextToSpeech.h"
+#import <Speech/Speech.h>
 
 @interface TextToSpeech () <SFSpeechRecognizerDelegate>
 
