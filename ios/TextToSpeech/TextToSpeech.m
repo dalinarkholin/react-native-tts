@@ -11,13 +11,6 @@
 #import <React/RCTLog.h>
 
 #import "TextToSpeech.h"
-#import <Speech/Speech.h>
-
-@interface TextToSpeech () <SFSpeechRecognizerDelegate>
-
-@property (nonatomic) SFSpeechAudioBufferRecognitionRequest* recognitionRequest;
-
-@end
 
 @implementation TextToSpeech
 
@@ -52,15 +45,6 @@ RCT_EXPORT_METHOD(speak:(NSString *)text
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    // Added by DalinarKholin
-    self.recognitionRequest = [[SFSpeechAudioBufferRecognitionRequest alloc] init];
-    [self.recognitionRequest endAudio];
-    AVAudioSession *avAudioSession = [AVAudioSession sharedInstance];
-    if (avAudioSession) {
-        [avAudioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
-        [avAudioSession setMode:AVAudioSessionModeDefault error:nil];
-    }
-
     if(!text) {
         reject(@"no_text", @"No text to speak", nil);
         return;
